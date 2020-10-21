@@ -9,9 +9,6 @@ const Auth = () => {
     <>
       <Text>Hello world</Text>
       <Form />
-      <Button
-      
-      />
     </>
   )
 }

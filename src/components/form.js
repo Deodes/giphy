@@ -22,7 +22,7 @@ const Form = () => {
   return(
     <>
       <Button 
-      title={'Login with GitHub'}
+      title="Login with GitHub"
       onPress={auth}
       />
     </>
