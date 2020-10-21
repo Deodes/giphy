@@ -4,8 +4,8 @@ import Constants from "expo-constants";
 import "react-native-gesture-handler";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Auth from './src/pages/auth'
-import Gifs from './src/pages/gifs'
+import Auth from './src/pages/authPage'
+import Gifs from './src/pages/gifsPage'
 
 const Stack = createStackNavigator();
 
@@ -16,10 +16,10 @@ export default function App() {
       <Stack.Navigator initialRouteName='Auth'>
         <Stack.Screen 
         name='Authorization' 
-        component={Auth}
+        component={AuthPage}
         
         />
-        <Stack.Screen name='Gifs' component={Gifs}/>
+        <Stack.Screen name='Gifs' component={GifsPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

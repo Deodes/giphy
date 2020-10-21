@@ -10,11 +10,16 @@ const Form = () => {
 
   async function auth(){
     const config = {
-      issuer: 'https://github.com/login/oauth/authorize',
+      redirectUrl: 'com.my.auth.app://oauthredirect',
       clientId: '94ca399f3860628a300c',
-      redirectUrl: 'http://127.0.0.1:19000/gifs',
-      state: ['bab4506240b276fa4ecef4e13fd5d3cc7669f579'],
-
+      clientSecret: '<client-secret>',
+      scopes: ['identity'],
+      serviceConfiguration: {
+        authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+        tokenEndpoint: 'https://github.com/login/oauth/access_token',
+        revocationEndpoint:
+          'https://github.com/settings/connections/applications/94ca399f3860628a300c'
+      }
     };
     const result = await authorize(config);
     console.log(result)

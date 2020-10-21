@@ -14,7 +14,7 @@ import * as _ from "lodash";
 import axios from "axios";
 import "react-native-gesture-handler";
 
-const Gifs = () => {
+const GifsPage = () => {
   const [gifs, setGifs] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [offset, setOffset] = useState(0);
