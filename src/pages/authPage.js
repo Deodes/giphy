@@ -1,16 +1,19 @@
 import * as React from "react";
-import {View, Text, Button} from "react-native";
+import { View, Text, Button } from "react-native";
 import axios from "axios";
 import Form from "../components/form";
-import { navigate } from '@react-navigation/native';
-const AuthPage = () => {
 
+const AuthPage = ({ navigation }) => {
   return (
     <>
       <Text>Hello world</Text>
       <Form />
+      <Button 
+      title="redirect"
+      onPress={() => navigation.navigate("Gifs")}
+      />
     </>
-  )
-}
+  );
+};
 
-export default Auth;
+export default AuthPage;
