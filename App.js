@@ -1,6 +1,6 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
-import Constants from "expo-constants";
+// import { StyleSheet } from "react-native";
+// import Constants from "expo-constants";
 import "react-native-gesture-handler";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
