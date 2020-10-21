@@ -10,10 +10,10 @@ const Form = () => {
 
   async function auth(){
     const config = {
-      redirectUrl: 'com.my.auth.app://oauthredirect',
+      redirectUrl: 'http://localhost:19006/gifs',
       clientId: '94ca399f3860628a300c',
-      clientSecret: '<client-secret>',
-      scopes: ['identity'],
+      clientSecret: 'bab4506240b276fa4ecef4e13fd5d3cc7669f579',
+      scopes: ['user'],
       serviceConfiguration: {
         authorizationEndpoint: 'https://github.com/login/oauth/authorize',
         tokenEndpoint: 'https://github.com/login/oauth/access_token',
