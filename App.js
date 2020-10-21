@@ -13,13 +13,13 @@ export default function App() {
  
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Authorization'>
-        <Stack.Screen name='Authorization'>
+      <Stack.Navigator initialRouteName='authorization'>
+        <Stack.Screen name='authorization'>
           {
             props => <AuthPage {...props}/>
           }
         </Stack.Screen>
-        <Stack.Screen name='Gifs'>
+        <Stack.Screen name='gifs'>
           {
             props => <GifsPage {...props}/>
           }

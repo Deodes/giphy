@@ -20,7 +20,7 @@ const AuthPage = ({ navigation }) => {
       // For usage in managed apps using the proxy
       redirectUri: makeRedirectUri({
         // For usage in bare and standalone
-        native: "http://localhost:19006/",
+        native: "http://localhost:19006/", 
       }),
     },
     discovery
@@ -29,7 +29,7 @@ const AuthPage = ({ navigation }) => {
   useEffect(() => {
     if (response?.type === "success") {
       const { code } = response.params;
-      navigation.navigate("Gifs");
+      navigation.navigate("gifs");
     }
   }, [response]);
   return (
