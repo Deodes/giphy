@@ -3,21 +3,35 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   SafeAreaView,
   Image,
+  Text,
   FlatList,
   TextInput,
   View,
   StyleSheet,
 } from "react-native";
-import Constants from "expo-constants";
+// import Constants from "expo-constants";
 import BottomSheet from "reanimated-bottom-sheet";
 import * as _ from "lodash";
 import axios from "axios";
 import "react-native-gesture-handler";
+import { setGifs } from "../actions/index";
+import { setGifsToZero } from "../actions/index";
+
+import { setInputValue } from "../actions/index";
+import { setOffset } from "../actions/index";
+import { setOffsetToZero } from "../actions/index";
+
+import { useSelector, useDispatch } from "react-redux";
 
 const GifsPage = () => {
-  const [gifs, setGifs] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [offset, setOffset] = useState(0);
+  const dispatch = useDispatch();
+
+
+  // const [offset, setOffset] = useState(0);
+  const offset = useSelector((state) => state.offset)
+  const gifs = useSelector((state) => state.gifs);
+  const inputValue = useSelector((state) => state.inputValue);
+  
 
   const sheetRef = useRef(null);
 
@@ -59,7 +73,8 @@ const GifsPage = () => {
 
   useEffect(() => {
     requestDebounce(inputValue);
-    setOffset((prev) => prev + 15);
+    // setOffset((prev) => prev + 15);
+    dispatch(setOffset());
   }, [requestDebounce, inputValue]);
 
   const requestDebounce = useCallback(
@@ -68,14 +83,17 @@ const GifsPage = () => {
   );
 
   const handleInput = (input) => {
-    setGifs([]);
-    setOffset(0);
-    setInputValue(input);
+
+    dispatch(setGifsToZero())
+    // setOffset(0);
+    dispatch(setOffsetToZero())
+    dispatch(setInputValue(input));
   };
 
   const handleScroll = () => {
     request(inputValue);
-    setOffset((prev) => prev + 15);
+    // setOffset((prev) => prev + 15);
+    dispatch(setOffset())
   };
 
   async function request(term) {
@@ -84,28 +102,29 @@ const GifsPage = () => {
     const response = await axios.get(
       `${BASE_URL}?api_key=${API_KEY}&q=${term}&limit=15&offset=${offset}&rating=g&lang=en`
     );
-    setGifs(gifs.concat(response.data.data));
+    
+    dispatch(setGifs(gifs.concat(response.data.data)));
   }
 
   return (
     <SafeAreaView style={styles.container}>
-        <BottomSheet
-          ref={sheetRef}
-          snapPoints={[450, 300, 0]}
-          renderHeader={renderHeader}
-          renderContent={renderContent}
-        />
-      </SafeAreaView>
-  )
-}
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={[450, 300, 0]}
+        renderHeader={renderHeader}
+        renderContent={renderContent}
+      />
+    </SafeAreaView>
+  );
+};
 
+// export default connect()(GifsPage);
 export default GifsPage;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    paddingTop: Constants.statusBarHeight,
     backgroundColor: "#ecf0f1",
     alignItems: "center",
   },
