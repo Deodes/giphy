@@ -3,7 +3,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   SafeAreaView,
   Image,
-  Text,
   FlatList,
   TextInput,
   View,
@@ -16,22 +15,13 @@ import axios from "axios";
 import "react-native-gesture-handler";
 import { setGifs } from "../actions/index";
 import { setGifsToZero } from "../actions/index";
-
-import { setInputValue } from "../actions/index";
-import { setOffset } from "../actions/index";
-import { setOffsetToZero } from "../actions/index";
-
 import { useSelector, useDispatch } from "react-redux";
 
 const GifsPage = () => {
   const dispatch = useDispatch();
-
-
-  // const [offset, setOffset] = useState(0);
-  const offset = useSelector((state) => state.offset)
-  const gifs = useSelector((state) => state.gifs);
-  const inputValue = useSelector((state) => state.inputValue);
-  
+  const gifs = useSelector(state => state);
+  const [offset, setOffset] = useState(0);
+  const [inputValue, setInputValue] = useState('');
 
   const sheetRef = useRef(null);
 
@@ -73,8 +63,8 @@ const GifsPage = () => {
 
   useEffect(() => {
     requestDebounce(inputValue);
-    // setOffset((prev) => prev + 15);
-    dispatch(setOffset());
+    setOffset((prev) => prev + 15);
+    console.log(gifs);
   }, [requestDebounce, inputValue]);
 
   const requestDebounce = useCallback(
@@ -85,15 +75,13 @@ const GifsPage = () => {
   const handleInput = (input) => {
 
     dispatch(setGifsToZero())
-    // setOffset(0);
-    dispatch(setOffsetToZero())
-    dispatch(setInputValue(input));
+    setOffset(0);
+    setInputValue(input);
   };
 
   const handleScroll = () => {
     request(inputValue);
-    // setOffset((prev) => prev + 15);
-    dispatch(setOffset())
+    setOffset((prev) => prev + 15);
   };
 
   async function request(term) {
@@ -118,7 +106,6 @@ const GifsPage = () => {
   );
 };
 
-// export default connect()(GifsPage);
 export default GifsPage;
 
 const styles = StyleSheet.create({
