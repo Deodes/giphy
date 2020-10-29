@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Text, Button } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
+import * as Linking from 'expo-linking';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -32,12 +33,20 @@ const AuthPage = ({ navigation }) => {
       navigation.navigate("gifs");
     }
   }, [response]);
+
+  const handleAnchor = () => {
+    Linking.openURL('https://www.google.com/');
+  }
+
   return (
     <>
-      <Text>Hello world</Text>
+      <Button 
+      title="LINK ME TO GOOGLE PAGE"
+      onPress={handleAnchor} />
+
       <Button
         disabled={!request}
-        title="Login"
+        title="LOGIN WITH GITHUB"
         onPress={() => {
           promptAsync();
         }}

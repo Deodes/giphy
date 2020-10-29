@@ -9,14 +9,17 @@ import GifsPage from "./src/pages/gifsPage";
 import store from "./index";
 import { Provider } from "react-redux";
 
+
 const Stack = createStackNavigator();
 
+
 export default function App() {
+
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="gifs">
-          <Stack.Screen name="authorization">
+        <Stack.Navigator initialRouteName="AUTHORIZATION">
+          <Stack.Screen name="AUTHORIZATION">
             {(props) => <AuthPage {...props} />}
           </Stack.Screen>
           <Stack.Screen name="gifs">
