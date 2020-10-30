@@ -38,6 +38,10 @@ export default function App() {
 
   Linking.addEventListener("url", handleDeepLink);
 
+  useEffect(() => {
+    Linking.getInitialURL().then(obj => console.log(obj))
+  })
+
   return (
     <Provider store={store}>
       <NavigationContainer ref={navigationRef}>
