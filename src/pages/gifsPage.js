@@ -64,7 +64,6 @@ const GifsPage = () => {
   useEffect(() => {
     requestDebounce(inputValue);
     setOffset((prev) => prev + 15);
-    console.log(gifs);
   }, [requestDebounce, inputValue]);
 
   const requestDebounce = useCallback(
