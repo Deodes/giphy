@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/bottom-tabs": "^5.10.2",
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
     "@types/lodash": "^4.14.162",
@@ -26,10 +27,13 @@
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
+    "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.2",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "expo-image-picker": "~9.1.0",
+    "expo-camera": "~9.0.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

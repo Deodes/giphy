@@ -4,15 +4,17 @@ import { useEffect } from "react";
 // import Constants from "expo-constants";
 import "react-native-gesture-handler";
 import { CommonActions, NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import AuthPage from "./src/pages/authPage";
-import GifsPage from "./src/pages/gifsPage";
-import LinkPage from "./src/pages/linkPage";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AuthPage from "./src/screens/authScreen";
+import GifsPage from "./src/screens/gifsScreen";
+import ProfilePage from "./src/screens/profileScreen";
 import * as Linking from "expo-linking";
 import store from "./index";
 import { Provider } from "react-redux";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Stack = createStackNavigator();
+
+const Tab = createBottomTabNavigator();
 
 const navigationRef = React.createRef();
 
@@ -45,17 +47,35 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer ref={navigationRef}>
-        <Stack.Navigator initialRouteName="authorization">
-          <Stack.Screen name="authorization">
+        <Tab.Navigator initialRouteName="Auth">
+          <Tab.Screen 
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="door" color={color} size={size} />
+            ),
+          }}
+          name="Auth">
             {(props) => <AuthPage {...props} />}
-          </Stack.Screen>
-          <Stack.Screen name="gifs">
+          </Tab.Screen>
+          <Tab.Screen 
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="file-image" color={color} size={size} />
+            ),
+          }}
+          name="Gifs">
             {(props) => <GifsPage {...props} />}
-          </Stack.Screen>
-          <Stack.Screen name="link">
-            {(props) => <LinkPage {...props} />}
-          </Stack.Screen>
-        </Stack.Navigator>
+          </Tab.Screen>
+          <Tab.Screen 
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="account-outline" color={color} size={size} />
+            ),
+          }}
+          name="Profile">
+            {(props) => <ProfilePage {...props} />}
+          </Tab.Screen>
+        </Tab.Navigator>
       </NavigationContainer>
     </Provider>
   );
