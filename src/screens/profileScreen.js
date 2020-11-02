@@ -13,7 +13,6 @@ const ProfilePage = () => {
 
 
   useEffect(() => {
-
     (async () => {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -22,6 +21,8 @@ const ProfilePage = () => {
         }
       }
     })();
+
+    
   }, []);
 
   const pickImage = async () => {
@@ -31,10 +32,10 @@ const ProfilePage = () => {
       aspect: [4, 3],
       quality: 1,
     });
-    console.log(result);
 
     if (!result.cancelled) {
-      setImage(result.uri);
+      console.log(result.uri)
+      setImage(result);
     }
   };
 
@@ -57,11 +58,10 @@ const ProfilePage = () => {
     );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{alignItems: 'center'}}>
       <Image 
-      width={100}
-      height={100}
-      source={{uri: image}} 
+      style={{width: 100, height:100,}}
+      source={image} 
       />
       <Button title="Change avatar" onPress={handleButton} />
     </SafeAreaView>
