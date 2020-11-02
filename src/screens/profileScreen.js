@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   Image,
   Button,
+  Text,
   ActionSheetIOS,
   SafeAreaView,
 } from "react-native";
@@ -34,7 +35,6 @@ const ProfilePage = () => {
     });
 
     if (!result.cancelled) {
-      console.log(result.uri)
       setImage(result);
     }
   };
@@ -48,7 +48,7 @@ const ProfilePage = () => {
       },
       (buttonIndex) => {
         if (buttonIndex === 0) {
-          //take a photo from camera
+          //take a photo
         } else if (buttonIndex === 1) {
           pickImage();
         } else if (buttonIndex === 2) {
@@ -60,10 +60,12 @@ const ProfilePage = () => {
   return (
     <SafeAreaView style={{alignItems: 'center'}}>
       <Image 
-      style={{width: 100, height:100,}}
-      source={image} 
+      style={{width: 200, height: 200,}}
+      source={image ? image : {uri: 'https://www.purina.ua/dog/dog-chow/sites/g/files/mcldtz2191/files/2017-09/realdogs-mobile.jpg'}} 
       />
       <Button title="Change avatar" onPress={handleButton} />
+      <Text style={{marginTop: 20, fontSize: 20}}>Vladimir Penchev</Text>
+      <Text style={{marginTop: 10, fontSize: 10}}>21.02.2000</Text>
     </SafeAreaView>
   );
 };
